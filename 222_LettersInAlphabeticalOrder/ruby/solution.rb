@@ -2,7 +2,7 @@
 #Returns true if all adjacent elements in the passed string return true from the given block
 def in_some_order(str)
   results = []
-  str.split("").each_cons(2) { |a| results << yield(a[0],a[1]) }
+  str.downcase.split("").each_cons(2) { |a| results << yield(a[0],a[1]) }
   results.all? {|a| a == true }
 end
 
@@ -15,7 +15,7 @@ if __FILE__ == $0
     if in_some_order(cur_word) {|a,b| a <= b}
       puts cur_word + " IN ORDER"
     elsif in_some_order(cur_word) {|a,b| a >= b}
-      puts cur_word + " IN REVERSE ORDER"
+      puts cur_word + " REVERSE ORDER"
     else 
       puts cur_word + " NOT IN ORDER"
     end
